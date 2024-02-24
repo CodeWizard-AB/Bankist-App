@@ -36,4 +36,16 @@
 	.moneyCalc span {
 		@apply text-green-500 text-2xl;
 	}
+
+	.deposit {
+		@apply rounded-full bg-[#8BD964] px-2 py-[1px] text-white;
+	}
+
+	.withdrawal {
+		@apply bg-[#EB355B] rounded-full px-2 py-[1px] text-white;
+	}
+
+	.cash {
+		@apply text-base;
+	}
 }

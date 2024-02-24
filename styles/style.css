@@ -1534,6 +1534,35 @@ input {
   color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
+.deposit {
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(139 217 100 / var(--tw-bg-opacity));
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.withdrawal {
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(235 53 91 / var(--tw-bg-opacity));
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.cash {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -1582,6 +1611,10 @@ input {
   max-width: 1024px;
 }
 
+.flex-1 {
+  flex: 1 1 0%;
+}
+
 .grid-cols-\[60fr_40fr\] {
   grid-template-columns: 60fr 40fr;
 }
@@ -1615,8 +1648,17 @@ input {
   justify-self: end;
 }
 
+.overflow-auto {
+  overflow: auto;
+}
+
 .rounded-full {
   border-radius: 9999px;
+}
+
+.rounded-l-xl {
+  border-top-left-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
 }
 
 .border-none {
@@ -1645,6 +1687,11 @@ input {
 
 .bg-transparent {
   background-color: transparent;
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .px-12 {
@@ -1723,6 +1770,36 @@ input {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.\*\:flex > * {
+  display: flex;
+}
+
+.\*\:items-center > * {
+  align-items: center;
+}
+
+.\*\:justify-between > * {
+  justify-content: space-between;
+}
+
+.\*\:gap-7 > * {
+  gap: 1.75rem;
+}
+
+.\*\:border-b > * {
+  border-bottom-width: 1px;
+}
+
+.\*\:px-10 > * {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.\*\:py-6 > * {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .\*\:text-center > * {
   text-align: center;
 }
@@ -1730,6 +1807,19 @@ input {
 .\*\:text-sm > * {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.\*\:text-xs > * {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.\*\:font-medium > * {
+  font-weight: 500;
+}
+
+.\*\:uppercase > * {
+  text-transform: uppercase;
 }
 
 .\*\:placeholder\:tracking-wider > *::-moz-placeholder {
