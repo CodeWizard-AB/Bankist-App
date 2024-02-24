@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	input {
+		@apply outline-none;
+	}
+}
+
+@layer components {
+	.section-title {
+		@apply text-lg font-semibold mb-2;
+	}
+
+	.section {
+		@apply px-10 py-8 rounded-xl;
+	}
+
+	.section form {
+		@apply grid grid-cols-[40fr_40fr_20fr] gap-x-3 items-center;
+	}
+
+	.section form input {
+		@apply bg-white/40 focus:bg-white/60 transition-all duration-500 rounded-lg text-center py-1 w-40;
+	}
+
+	.section form label {
+		@apply text-sm text-center;
+	}
+
+	.section form button {
+		@apply btn hover:bg-white bg-white;
+	}
+}

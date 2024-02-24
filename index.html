@@ -19,27 +19,31 @@
 		<link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
 		<link rel="stylesheet" href="styles/style.css" />
 	</head>
-	<body class="bg-[#F3F3F3] h-screen font-poppin">
+	<body class="bg-[#F3F3F3] h-screen font-poppin text-[#444444]">
 		<!-- * HEADER COMPONENTS -->
 
 		<header class="flex justify-between items-center container py-5 px-10">
 			<h2 id="welcome" class="text-xl font-medium">Log in to get started</h2>
 			<figure>
-				<img src="images/logo.png" alt="" class="w-1/2 m-auto" />
+				<img src="images/logo.png" alt="brand logo" class="w-1/2 ml-auto" />
 			</figure>
-			<form action="#" class="*:text-center flex items-center">
+			<form
+				action="#"
+				class="*:text-center flex items-center *:placeholder:text-gray-600 *:placeholder:tracking-wider"
+			>
 				<input
 					type="text"
 					name="userName"
 					id="user_name"
-					class="rounded-full w-32 outline-none py-2 mr-4"
+					class="rounded-full w-32 py-2 focus:border-2 mr-4"
 					placeholder="user"
 				/>
 				<input
 					type="text"
 					name="userPin"
 					id="user_pin"
-					class="rounded-full w-32 outline-none py-2"
+					maxlength="4"
+					class="rounded-full w-32 py-2 focus:border-2"
 					placeholder="PIN"
 				/>
 				<button
@@ -48,7 +52,7 @@
 					<ion-icon
 						name="arrow-forward-outline"
 						size="large"
-						class="w-7"
+						class="w-6 text-gray-500"
 					></ion-icon>
 				</button>
 			</form>
@@ -56,7 +60,70 @@
 
 		<!-- * MAIN COMPONENTS -->
 
-		<main></main>
+		<main
+			class="container max-w-screen-lg grid grid-cols-[60fr_40fr] gap-3 m-auto"
+		>
+			<section>
+				<h2>Current balance</h2>
+				<p>As of 24/02/2024, 19:43</p>
+			</section>
+
+			<!-- * BALANCE -->
+
+			<section>
+				<p class="text-5xl text-right">25 952,59 $</p>
+			</section>
+
+			<!-- * MOVEMENTS MONEY-->
+
+			<section class="row-span-3"></section>
+
+			<!-- * TRANSFER MONEY -->
+
+			<section class="bg-[#FFB503] section">
+				<p class="section-title">Transfer money</p>
+				<form action="#">
+					<input type="text" name="tranferUser" id="transfer_user" />
+					<input type="number" name="transferAmount" id="transfer_amount" />
+					<button>
+						<ion-icon name="arrow-forward-outline"></ion-icon>
+					</button>
+					<label for="transfer_user">Transfer to</label>
+					<label for="transfer_amount">Amount</label>
+				</form>
+			</section>
+
+			<!-- * REQUEST LOAN -->
+
+			<section class="bg-[#68C972] section">
+				<p class="section-title">Transfer money</p>
+				<form action="#">
+					<input type="number" name="loanAmount" id="loan_amount" />
+					<button class="col-span-2 justify-self-start">
+						<ion-icon name="arrow-forward-outline"></ion-icon>
+					</button>
+					<label for="loan_amount">Amount</label>
+				</form>
+			</section>
+
+			<!-- * CLOSE ACCOUNT -->
+
+			<section class="bg-[#FFB503] section">
+				<p class="section-title">Transfer money</p>
+				<form action="#">
+					<input type="text" name="confirmUser" id="confirm_user" />
+					<input type="number" name="confirmPin" id="confirm_pin" />
+					<button>
+						<ion-icon name="arrow-forward-outline"></ion-icon>
+					</button>
+					<label for="confirm_user">Confirm user</label>
+					<label for="confirm_pin">Confirm Pin</label>
+				</form>
+			</section>
+
+			<!-- * MONEY CALCULATION -->
+			<!-- * TIME COUNTING -->
+		</main>
 
 		<!-- * JS REFERENCE -->
 
