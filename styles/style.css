@@ -1653,10 +1653,6 @@ input {
   overflow: auto;
 }
 
-.overflow-scroll {
-  overflow: scroll;
-}
-
 .rounded-full {
   border-radius: 9999px;
 }
