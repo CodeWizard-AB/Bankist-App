@@ -1280,7 +1280,7 @@ input {
 }
 
 .section form input {
-  width: 10rem;
+  width: 9rem;
   border-radius: 0.5rem;
   background-color: rgb(255 255 255 / 0.4);
   padding-top: 0.25rem;
@@ -1527,6 +1527,13 @@ input {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.moneyCalc span {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  --tw-text-opacity: 1;
+  color: rgb(34 197 94 / var(--tw-text-opacity));
+}
+
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -1547,16 +1554,16 @@ input {
   margin-right: 1rem;
 }
 
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
 .flex {
   display: flex;
 }
 
 .grid {
   display: grid;
-}
-
-.h-screen {
-  height: 100vh;
 }
 
 .w-1\/2 {
@@ -1579,6 +1586,10 @@ input {
   grid-template-columns: 60fr 40fr;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 .items-center {
   align-items: center;
 }
@@ -1587,12 +1598,21 @@ input {
   justify-content: space-between;
 }
 
-.gap-3 {
-  gap: 0.75rem;
+.gap-x-4 {
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}
+
+.gap-y-5 {
+  row-gap: 1.25rem;
 }
 
 .justify-self-start {
   justify-self: start;
+}
+
+.justify-self-end {
+  justify-self: end;
 }
 
 .rounded-full {
@@ -1606,6 +1626,11 @@ input {
 .bg-\[\#68C972\] {
   --tw-bg-opacity: 1;
   background-color: rgb(104 201 114 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#F3435D\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 67 93 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#F3F3F3\] {
@@ -1622,9 +1647,9 @@ input {
   background-color: transparent;
 }
 
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .py-2 {
@@ -1645,9 +1670,23 @@ input {
   font-family: "Poppins", sans-serif;;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
+}
+
+.text-\[15px\] {
+  font-size: 15px;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .text-xl {
@@ -1657,6 +1696,10 @@ input {
 
 .font-medium {
   font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .text-\[\#444444\] {
@@ -1669,6 +1712,11 @@ input {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 .shadow-none {
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
@@ -1677,6 +1725,11 @@ input {
 
 .\*\:text-center > * {
   text-align: center;
+}
+
+.\*\:text-sm > * {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .\*\:placeholder\:tracking-wider > *::-moz-placeholder {

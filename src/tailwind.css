@@ -22,7 +22,7 @@
 	}
 
 	.section form input {
-		@apply bg-white/40 focus:bg-white/60 transition-all duration-500 rounded-lg text-center py-1 w-40;
+		@apply bg-white/40 focus:bg-white/60 transition-all duration-500 rounded-lg text-center py-1 w-36;
 	}
 
 	.section form label {
@@ -31,5 +31,9 @@
 
 	.section form button {
 		@apply btn hover:bg-white bg-white;
+	}
+
+	.moneyCalc span {
+		@apply text-green-500 text-2xl;
 	}
 }

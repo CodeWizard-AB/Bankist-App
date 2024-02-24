@@ -19,10 +19,10 @@
 		<link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
 		<link rel="stylesheet" href="styles/style.css" />
 	</head>
-	<body class="bg-[#F3F3F3] h-screen font-poppin text-[#444444]">
+	<body class="bg-[#F3F3F3] font-poppin text-[#444444] py-5">
 		<!-- * HEADER COMPONENTS -->
 
-		<header class="flex justify-between items-center container py-5 px-10">
+		<header class="flex justify-between items-center container px-12">
 			<h2 id="welcome" class="text-xl font-medium">Log in to get started</h2>
 			<figure>
 				<img src="images/logo.png" alt="brand logo" class="w-1/2 ml-auto" />
@@ -61,10 +61,10 @@
 		<!-- * MAIN COMPONENTS -->
 
 		<main
-			class="container max-w-screen-lg grid grid-cols-[60fr_40fr] gap-3 m-auto"
+			class="container max-w-screen-lg grid grid-cols-[60fr_40fr] gap-y-5 m-auto mt-6 gap-x-4"
 		>
 			<section>
-				<h2>Current balance</h2>
+				<h2 class="text-2xl font-medium">Current balance</h2>
 				<p>As of 24/02/2024, 19:43</p>
 			</section>
 
@@ -96,7 +96,7 @@
 			<!-- * REQUEST LOAN -->
 
 			<section class="bg-[#68C972] section">
-				<p class="section-title">Transfer money</p>
+				<p class="section-title">Request loan</p>
 				<form action="#">
 					<input type="number" name="loanAmount" id="loan_amount" />
 					<button class="col-span-2 justify-self-start">
@@ -108,8 +108,8 @@
 
 			<!-- * CLOSE ACCOUNT -->
 
-			<section class="bg-[#FFB503] section">
-				<p class="section-title">Transfer money</p>
+			<section class="bg-[#F3435D] section">
+				<p class="section-title">Close account</p>
 				<form action="#">
 					<input type="text" name="confirmUser" id="confirm_user" />
 					<input type="number" name="confirmPin" id="confirm_pin" />
@@ -122,7 +122,22 @@
 			</section>
 
 			<!-- * MONEY CALCULATION -->
+
+			<section class="flex justify-between *:text-sm moneyCalc items-end">
+				<p>IN <span id="credit">34,00$</span></p>
+				<p>OUT <span id="debit" class="text-red-500">34,00$</span></p>
+				<p>INTEREST <span id="interest">34,00$</span></p>
+				<button>&darr; SORT</button>
+			</section>
+
 			<!-- * TIME COUNTING -->
+
+			<section class="justify-self-end">
+				<p class="text-sm">
+					You will be logged out in
+					<span id="time" class="font-semibold text-[15px]">5:00</span>
+				</p>
+			</section>
 		</main>
 
 		<!-- * JS REFERENCE -->
