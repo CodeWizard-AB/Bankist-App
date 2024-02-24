@@ -47,7 +47,7 @@
 					placeholder="PIN"
 				/>
 				<button
-					class="btn bg-transparent hover:bg-transparent border-none shadow-none"
+					class="btn bg-transparent hover:bg-transparent border-none shadow-none" id="login_btn"
 				>
 					<ion-icon
 						name="arrow-forward-outline"
@@ -71,14 +71,14 @@
 			<!-- * BALANCE -->
 
 			<section>
-				<p class="text-5xl text-right">25 952,59 $</p>
+				<p class="text-5xl text-right" id="balance">25 952,59 $</p>
 			</section>
 
 			<!-- * MOVEMENTS MONEY-->
 
 			<section
 				id="movements"
-				class="row-span-3 *:flex *:items-center *:justify-between *:uppercase bg-white overflow-auto *:py-6 *:border-b *:text-xs *:gap-7 *:px-10 *:font-medium rounded-l-xl"
+				class="row-span-3 *:flex *:items-center *:justify-between *:uppercase bg-white *:py-6 *:border-b *:text-xs *:gap-7 *:px-10 *:font-medium rounded-l-xl overflow-auto"
 			>
 				<div>
 					<p class="deposit">8 deposit</p>
@@ -100,7 +100,7 @@
 				<form action="#">
 					<input type="text" name="tranferUser" id="transfer_user" />
 					<input type="number" name="transferAmount" id="transfer_amount" />
-					<button>
+					<button id="transfer_btn">
 						<ion-icon name="arrow-forward-outline"></ion-icon>
 					</button>
 					<label for="transfer_user">Transfer to</label>
@@ -114,7 +114,7 @@
 				<p class="section-title">Request loan</p>
 				<form action="#">
 					<input type="number" name="loanAmount" id="loan_amount" />
-					<button class="col-span-2 justify-self-start">
+					<button class="col-span-2 justify-self-start" id="loan_btn">
 						<ion-icon name="arrow-forward-outline"></ion-icon>
 					</button>
 					<label for="loan_amount">Amount</label>
@@ -128,7 +128,7 @@
 				<form action="#">
 					<input type="text" name="confirmUser" id="confirm_user" />
 					<input type="number" name="confirmPin" id="confirm_pin" />
-					<button>
+					<button id="close_btn">
 						<ion-icon name="arrow-forward-outline"></ion-icon>
 					</button>
 					<label for="confirm_user">Confirm user</label>
@@ -140,7 +140,7 @@
 
 			<section class="flex justify-between *:text-sm moneyCalc items-end">
 				<p>IN <span id="credit">34,00$</span></p>
-				<p>OUT <span id="debit" class="text-red-500">34,00$</span></p>
+				<p>OUT <span id="debit" class="!text-red-500">34,00$</span></p>
 				<p>INTEREST <span id="interest">34,00$</span></p>
 				<button>&darr; SORT</button>
 			</section>

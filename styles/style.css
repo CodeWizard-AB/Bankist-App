@@ -1559,8 +1559,9 @@ input {
 }
 
 .cash {
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 400;
 }
 
 .col-span-2 {
@@ -1650,6 +1651,10 @@ input {
 
 .overflow-auto {
   overflow: auto;
+}
+
+.overflow-scroll {
+  overflow: scroll;
 }
 
 .rounded-full {
@@ -1749,6 +1754,11 @@ input {
   font-weight: 600;
 }
 
+.\!text-red-500 {
+  --tw-text-opacity: 1 !important;
+  color: rgb(239 68 68 / var(--tw-text-opacity)) !important;
+}
+
 .text-\[\#444444\] {
   --tw-text-opacity: 1;
   color: rgb(68 68 68 / var(--tw-text-opacity));
@@ -1757,11 +1767,6 @@ input {
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 .shadow-none {
