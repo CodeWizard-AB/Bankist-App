@@ -19,23 +19,38 @@
 		<link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
 		<link rel="stylesheet" href="styles/style.css" />
 	</head>
-	<body class="bg-[#F3F3F3] h-screen">
+	<body class="bg-[#F3F3F3] h-screen font-poppin">
 		<!-- * HEADER COMPONENTS -->
 
-		<header class="flex justify-between items-center container p">
-			<h2 id="welcome">Log in to get started</h2>
+		<header class="flex justify-between items-center container py-5 px-10">
+			<h2 id="welcome" class="text-xl font-medium">Log in to get started</h2>
 			<figure>
-				<img src="images/logo.png" alt="" class="w-1/2" />
+				<img src="images/logo.png" alt="" class="w-1/2 m-auto" />
 			</figure>
-			<form action="#">
+			<form action="#" class="*:text-center flex items-center">
 				<input
 					type="text"
 					name="userName"
 					id="user_name"
-					class="rounded-full"
+					class="rounded-full w-32 outline-none py-2 mr-4"
+					placeholder="user"
 				/>
-				<input type="text" name="userPin" id="user_pin" class="rounded-full" />
-				<button><ion-icon name="arrow-forward-outline"></ion-icon></button>
+				<input
+					type="text"
+					name="userPin"
+					id="user_pin"
+					class="rounded-full w-32 outline-none py-2"
+					placeholder="PIN"
+				/>
+				<button
+					class="btn bg-transparent hover:bg-transparent border-none shadow-none"
+				>
+					<ion-icon
+						name="arrow-forward-outline"
+						size="large"
+						class="w-7"
+					></ion-icon>
+				</button>
 			</form>
 		</header>
 
