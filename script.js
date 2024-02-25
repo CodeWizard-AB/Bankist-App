@@ -79,7 +79,7 @@ const closeBtn = document.getElementById("close_btn");
 
 // * INPUT ELEMENTS
 
-const tranferToInput = document.getElementById("transfer_user");
+const transferToInput = document.getElementById("transfer_user");
 const transferAmount = document.getElementById("transfer_amount");
 const loanAmount = document.getElementById("loan_amount");
 const confirmUser = document.getElementById("confirm_user");
@@ -101,11 +101,15 @@ const userCreate = () => {
 userCreate();
 
 const updateBalance = (acc) => {
-	acc.balance = acc.movements.reduce((total, mov) => total + mov);
+	accounts.forEach((account) => {
+		account.balance = account.movements.reduce((total, mov) => total + mov);
+	});
 	balanceAmount.textContent = acc.balance.toFixed(2) + " $";
 };
 
 const updateMovements = (acc) => {
+	movementContainer.innerHTML = "";
+
 	acc.movements.forEach((mov, i) => {
 		const movType = mov > 0 ? "deposit" : "withdrawal";
 		const movHtml = `
@@ -150,7 +154,8 @@ const updateUI = (acc) => {
 
 let currentAccount;
 
-loginBtn.addEventListener("click", () => {
+loginBtn.addEventListener("click", (e) => {
+	e.preventDefault();
 	currentAccount = accounts.find(
 		(acc) =>
 			acc.username === userName.value && acc.pin === Number(userPin.value)
@@ -158,9 +163,56 @@ loginBtn.addEventListener("click", () => {
 
 	if (currentAccount) {
 		containerApp.classList.remove("hide");
-		updateUI(currentAccount);
-		userName.value = userPin.value = "";
 	} else {
-		alert("Wrong Credential! Please try again");
+		alert("Wrong credential! Please try again");
 	}
+
+	updateUI(currentAccount);
+	userName.value = userPin.value = "";
+});
+
+transferBtn.addEventListener("click", (e) => {
+	e.preventDefault();
+	const transferValue = Number(transferAmount.value);
+	const transferTo = transferToInput.value;
+	const recipent = accounts.find((acc) => acc.username === transferTo);
+
+	if (
+		recipent &&
+		transferTo !== currentAccount.username &&
+		currentAccount.balance >= transferValue &&
+		transferValue > 0
+	) {
+		recipent.movements.push(transferValue);
+		currentAccount.movements.push(-transferValue);
+	}
+
+	updateUI(currentAccount);
+	transferToInput.value = transferAmount.value = "";
+});
+
+loanBtn.addEventListener("click", (e) => {
+	e.preventDefault();
+	const requestAmount = Number(loanAmount.value);
+	if (
+		currentAccount.movements.some((mov) => mov >= requestAmount * 0.1) &&
+		requestAmount > 0
+	) {
+		currentAccount.movements.push(requestAmount);
+	}
+
+	updateUI(currentAccount);
+	loanAmount.value = "";
+});
+
+closeBtn.addEventListener("click", (e) => {
+	e.preventDefault();
+	if (
+		confirmUser.value === currentAccount.username &&
+		Number(confirmPin.value) === currentAccount.pin
+	) {
+		containerApp.classList.add("hide");
+	}
+
+	confirmUser.value = confirmPin.value = "";
 });
