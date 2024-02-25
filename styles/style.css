@@ -1755,10 +1755,6 @@ input {
   display: grid;
 }
 
-.max-h-\[\] {
-  max-height: ;
-}
-
 .max-h-\[544px\] {
   max-height: 544px;
 }
@@ -1822,10 +1818,6 @@ input {
 
 .overflow-auto {
   overflow: auto;
-}
-
-.overflow-scroll {
-  overflow: scroll;
 }
 
 .rounded-full {

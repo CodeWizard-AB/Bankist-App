@@ -133,7 +133,7 @@ const updateSummary = (acc) => {
 		.filter((mov) => mov < 0)
 		.reduce((total, mov) => total + mov);
 
-	debitAmount.textContent = Math.abs(totalDebit.toFixed(2)) + "$";
+	debitAmount.textContent = Math.abs(totalDebit).toFixed(2) + "$";
 
 	const totalInterest = acc.movements
 		.filter((mov) => mov > 0)
@@ -152,7 +152,7 @@ const updateUI = (acc) => {
 
 // * EVENT HANDLERS -
 
-let currentAccount;
+let currentAccount, appTimer;
 
 loginBtn.addEventListener("click", (e) => {
 	e.preventDefault();
@@ -163,6 +163,9 @@ loginBtn.addEventListener("click", (e) => {
 
 	if (currentAccount) {
 		containerApp.classList.remove("hide");
+		welcomeLabel.textContent = `Welcome, ${
+			currentAccount?.owner.split(" ")[0]
+		}!`;
 	} else {
 		alert("Wrong credential! Please try again");
 	}
