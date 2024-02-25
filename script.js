@@ -176,8 +176,6 @@ loginBtn.addEventListener("click", (e) => {
 		welcomeLabel.textContent = `Welcome, ${
 			currentAccount?.owner.split(" ")[0]
 		}!`;
-	} else {
-		alert("Wrong credential! Please try again");
 	}
 
 	updateUI(currentAccount);
@@ -229,6 +227,7 @@ closeBtn.addEventListener("click", (e) => {
 			(acc) => acc.username === currentAccount.username
 		);
 		accounts.splice(userIndex, 1);
+		welcomeLabel.textContent = "Log in to get started";
 	}
 
 	confirmUser.value = confirmPin.value = "";
