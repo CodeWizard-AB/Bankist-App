@@ -76,6 +76,7 @@ const loginBtn = document.getElementById("login_btn");
 const transferBtn = document.getElementById("transfer_btn");
 const loanBtn = document.getElementById("loan_btn");
 const closeBtn = document.getElementById("close_btn");
+const sortBtn = document.getElementById("sort_btn");
 
 // * INPUT ELEMENTS
 
@@ -107,10 +108,14 @@ const updateBalance = (acc) => {
 	balanceAmount.textContent = acc.balance.toFixed(2) + " $";
 };
 
-const updateMovements = (acc) => {
+const updateMovements = (acc, sort) => {
 	movementContainer.innerHTML = "";
 
-	acc.movements.forEach((mov, i) => {
+	const movs = sort
+		? acc.movements.slice().sort((a, b) => a - b)
+		: acc.movements;
+
+	movs.forEach((mov, i) => {
 		const movType = mov > 0 ? "deposit" : "withdrawal";
 		const movHtml = `
 		<div>
@@ -153,6 +158,11 @@ const updateUI = (acc) => {
 // * EVENT HANDLERS -
 
 let currentAccount, appTimer;
+
+sortBtn.addEventListener("click", (e) => {
+	e.preventDefault();
+	updateMovements(currentAccount, true);
+});
 
 loginBtn.addEventListener("click", (e) => {
 	e.preventDefault();
