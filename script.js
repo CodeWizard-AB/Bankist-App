@@ -121,7 +121,7 @@ const updateMovements = (acc, sort) => {
 		<div>
 			<p class="${movType}">${i + 1} ${movType}</p>
 			<p class="flex-1">12/03/2020</p>
-			<p class="cash">${Math.abs(mov)}$</p>
+			<p class="cash">${mov.toFixed(2)}$</p>
 		</div>`;
 		movementContainer.insertAdjacentHTML("afterbegin", movHtml);
 	});
@@ -167,8 +167,7 @@ sortBtn.addEventListener("click", (e) => {
 loginBtn.addEventListener("click", (e) => {
 	e.preventDefault();
 	currentAccount = accounts.find(
-		(acc) =>
-			acc.username === userName.value && acc.pin === Number(userPin.value)
+		(acc) => acc.username === userName.value && acc.pin === +userPin.value
 	);
 
 	if (currentAccount) {
@@ -184,7 +183,7 @@ loginBtn.addEventListener("click", (e) => {
 
 transferBtn.addEventListener("click", (e) => {
 	e.preventDefault();
-	const transferValue = Number(transferAmount.value);
+	const transferValue = +transferAmount.value;
 	const transferTo = transferToInput.value;
 	const recipent = accounts.find((acc) => acc.username === transferTo);
 
@@ -204,7 +203,7 @@ transferBtn.addEventListener("click", (e) => {
 
 loanBtn.addEventListener("click", (e) => {
 	e.preventDefault();
-	const requestAmount = Number(loanAmount.value);
+	const requestAmount = +loanAmount.value;
 	if (
 		currentAccount.movements.some((mov) => mov >= requestAmount * 0.1) &&
 		requestAmount > 0
@@ -220,7 +219,7 @@ closeBtn.addEventListener("click", (e) => {
 	e.preventDefault();
 	if (
 		confirmUser.value === currentAccount.username &&
-		Number(confirmPin.value) === currentAccount.pin
+		+confirmPin.value === currentAccount.pin
 	) {
 		containerApp.classList.add("hide");
 		const userIndex = accounts.findIndex(
