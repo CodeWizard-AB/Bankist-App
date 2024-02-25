@@ -48,4 +48,8 @@
 	.cash {
 		@apply text-lg font-normal;
 	}
+
+	.hide {
+		@apply opacity-0 scale-90 hidden;
+	}
 }

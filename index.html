@@ -19,7 +19,7 @@
 		<link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
 		<link rel="stylesheet" href="styles/style.css" />
 	</head>
-	<body class="bg-[#F3F3F3] font-poppin text-[#444444] py-5">
+	<body class="bg-[#F3F3F3] font-poppin text-[#444444] py-5 min-h-screen">
 		<!-- * HEADER COMPONENTS -->
 
 		<header class="flex justify-between items-center container px-12">
@@ -47,7 +47,8 @@
 					placeholder="PIN"
 				/>
 				<button
-					class="btn bg-transparent hover:bg-transparent border-none shadow-none" id="login_btn"
+					class="btn bg-transparent hover:bg-transparent border-none shadow-none"
+					id="login_btn"
 				>
 					<ion-icon
 						name="arrow-forward-outline"
@@ -61,7 +62,7 @@
 		<!-- * MAIN COMPONENTS -->
 
 		<main
-			class="container max-w-screen-lg grid grid-cols-[60fr_40fr] gap-y-5 m-auto mt-6 gap-x-4"
+			class="container max-w-screen-lg grid grid-cols-[60fr_40fr] gap-y-5 m-auto mt-6 gap-x-4 transition-all duration-1000 ease-in-out"
 		>
 			<section>
 				<h2 class="text-2xl font-medium">Current balance</h2>
@@ -78,9 +79,9 @@
 
 			<section
 				id="movements"
-				class="row-span-3 *:flex *:items-center *:justify-between *:uppercase bg-white *:py-6 *:border-b *:text-xs *:gap-7 *:px-10 *:font-medium rounded-l-xl overflow-auto"
+				class="row-span-3 *:flex *:items-center *:justify-between *:uppercase bg-white *:py-6 *:border-b *:text-xs *:gap-7 *:px-10 *:font-medium rounded-l-xl overflow-auto max-h-[544px]"
 			>
-				<div>
+				<!-- <div>
 					<p class="deposit">8 deposit</p>
 					<p class="flex-1">12/03/2020</p>
 					<p class="cash">1300,00 €</p>
@@ -90,7 +91,7 @@
 					<p class="withdrawal">7 WITHDRAWAL</p>
 					<p class="flex-1">12/03/2020</p>
 					<p class="cash">1300,00 €</p>
-				</div>
+				</div> -->
 			</section>
 
 			<!-- * TRANSFER MONEY -->

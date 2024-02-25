@@ -1,6 +1,6 @@
 "use strict";
 
-// * DATA -
+// * USER DATA -
 
 const account1 = {
 	owner: "Jonas Schmedtmann",
@@ -65,6 +65,10 @@ const accounts = [account1, account2, account3, account4];
 const balanceAmount = document.getElementById("balance");
 const movementContainer = document.getElementById("movements");
 const welcomeLabel = document.getElementById("welcome");
+const containerApp = document.querySelector("main");
+const creditAmount = document.getElementById("credit");
+const debitAmount = document.getElementById("debit");
+const interestAmount = document.getElementById("interest");
 
 // * BUTTON ELEMENTS
 
@@ -75,12 +79,88 @@ const closeBtn = document.getElementById("close_btn");
 
 // * INPUT ELEMENTS
 
-const tranferToInput = docuemtn.getElementById("transfer_user");
+const tranferToInput = document.getElementById("transfer_user");
 const transferAmount = document.getElementById("transfer_amount");
 const loanAmount = document.getElementById("loan_amount");
-const confirmUser = documetn.getElementById("confirm_user");
-const confirmPin = documetn.getElementById("confirm_pin");
+const confirmUser = document.getElementById("confirm_user");
+const confirmPin = document.getElementById("confirm_pin");
+const userName = document.getElementById("user_name");
+const userPin = document.getElementById("user_pin");
 
 // * FUNCTIONS -
 
+const userCreate = () => {
+	accounts.forEach((acc) => {
+		acc.username = acc.owner
+			.split(" ")
+			.map((word) => word[0].toLowerCase())
+			.join("");
+	});
+};
+
+userCreate();
+
+const updateBalance = (acc) => {
+	acc.balance = acc.movements.reduce((total, mov) => total + mov);
+	balanceAmount.textContent = acc.balance.toFixed(2) + " $";
+};
+
+const updateMovements = (acc) => {
+	acc.movements.forEach((mov, i) => {
+		const movType = mov > 0 ? "deposit" : "withdrawal";
+		const movHtml = `
+		<div>
+			<p class="${movType}">${i + 1} ${movType}</p>
+			<p class="flex-1">12/03/2020</p>
+			<p class="cash">${Math.abs(mov)}$</p>
+		</div>`;
+		movementContainer.insertAdjacentHTML("afterbegin", movHtml);
+	});
+};
+
+const updateSummary = (acc) => {
+	const totalCredit = acc.movements
+		.filter((mov) => mov > 0)
+		.reduce((total, mov) => total + mov);
+
+	creditAmount.textContent = totalCredit.toFixed(2) + "$";
+
+	const totalDebit = acc.movements
+		.filter((mov) => mov < 0)
+		.reduce((total, mov) => total + mov);
+
+	debitAmount.textContent = Math.abs(totalDebit.toFixed(2)) + "$";
+
+	const totalInterest = acc.movements
+		.filter((mov) => mov > 0)
+		.map((dep) => (dep * acc.interestRate) / 100)
+		.filter((int) => int >= 0)
+		.reduce((total, int) => total + int);
+
+	interestAmount.textContent = totalInterest.toFixed(2) + "$";
+};
+
+const updateUI = (acc) => {
+	updateMovements(acc);
+	updateSummary(acc);
+	updateBalance(acc);
+};
+
 // * EVENT HANDLERS -
+
+let currentAccount;
+
+loginBtn.addEventListener("click", () => {
+	currentAccount = accounts.find(
+		(acc) =>
+			acc.username === userName.value && acc.pin === Number(userPin.value)
+	);
+
+	if (currentAccount) {
+		containerApp.classList.remove("hide");
+		updateUI(currentAccount);
+		userName.value = userPin.value = "";
+	} else {
+		alert("Wrong Credential! Please try again");
+	}
+});
