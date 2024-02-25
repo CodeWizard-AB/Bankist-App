@@ -215,6 +215,10 @@ closeBtn.addEventListener("click", (e) => {
 		Number(confirmPin.value) === currentAccount.pin
 	) {
 		containerApp.classList.add("hide");
+		const userIndex = accounts.findIndex(
+			(acc) => acc.username === currentAccount.username
+		);
+		accounts.splice(userIndex, 1);
 	}
 
 	confirmUser.value = confirmPin.value = "";
