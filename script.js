@@ -69,6 +69,7 @@ const containerApp = document.querySelector("main");
 const creditAmount = document.getElementById("credit");
 const debitAmount = document.getElementById("debit");
 const interestAmount = document.getElementById("interest");
+const timerLabel = document.getElementById("time");
 
 // * BUTTON ELEMENTS
 
@@ -155,6 +156,30 @@ const updateUI = (acc) => {
 	updateBalance(acc);
 };
 
+const logTimer = (time) => {
+	const timerFun = () => {
+		const min = String(parseInt(startTime / 60)).padStart(2, 0);
+		const sec = String(startTime % 60).padStart(2, 0);
+		timerLabel.textContent = `${min}:${sec}`;
+		if (startTime === 0) {
+			clearInterval(funTimer);
+			containerApp.classList.add("hide");
+			welcomeLabel.textContent = "Log in to get started";
+		}
+		startTime--;
+	};
+
+	let startTime = time * 60;
+	timerFun();
+	const funTimer = setInterval(timerFun, 1000);
+	return funTimer;
+};
+
+const resetTimer = () => {
+	if (appTimer) clearInterval(appTimer);
+	appTimer = logTimer(1);
+};
+
 // * EVENT HANDLERS -
 
 let currentAccount, appTimer;
@@ -175,6 +200,8 @@ loginBtn.addEventListener("click", (e) => {
 		welcomeLabel.textContent = `Welcome, ${
 			currentAccount?.owner.split(" ")[0]
 		}!`;
+
+		resetTimer();
 	}
 
 	updateUI(currentAccount);
@@ -195,6 +222,8 @@ transferBtn.addEventListener("click", (e) => {
 	) {
 		recipent.movements.push(transferValue);
 		currentAccount.movements.push(-transferValue);
+
+		resetTimer();
 	}
 
 	updateUI(currentAccount);
@@ -208,10 +237,13 @@ loanBtn.addEventListener("click", (e) => {
 		currentAccount.movements.some((mov) => mov >= requestAmount * 0.1) &&
 		requestAmount > 0
 	) {
-		currentAccount.movements.push(requestAmount);
+		setTimeout(() => {
+			currentAccount.movements.push(requestAmount);
+			updateUI(currentAccount);
+			resetTimer();
+		}, 2500);
 	}
 
-	updateUI(currentAccount);
 	loanAmount.value = "";
 });
 
