@@ -70,6 +70,7 @@ const creditAmount = document.getElementById("credit");
 const debitAmount = document.getElementById("debit");
 const interestAmount = document.getElementById("interest");
 const timerLabel = document.getElementById("time");
+const dateLabel = document.getElementById("date");
 
 // * BUTTON ELEMENTS
 
@@ -89,7 +90,7 @@ const confirmPin = document.getElementById("confirm_pin");
 const userName = document.getElementById("user_name");
 const userPin = document.getElementById("user_pin");
 
-// * FUNCTIONS -
+// * EVENT FUNCTIONS -
 
 const userCreate = () => {
 	accounts.forEach((acc) => {
@@ -101,6 +102,8 @@ const userCreate = () => {
 };
 
 userCreate();
+
+
 
 const updateBalance = (acc) => {
 	accounts.forEach((account) => {
@@ -118,10 +121,19 @@ const updateMovements = (acc, sort) => {
 
 	movs.forEach((mov, i) => {
 		const movType = mov > 0 ? "deposit" : "withdrawal";
+
+		const now = new Date(acc.movementsDates[i]);
+		const day = String(now.getDate()).padStart(2, 0);
+		const hour = now.getHours();
+		const year = now.getFullYear();
+		const min = String(now.getMinutes()).padStart(2, 0);
+		const month = String(now.getMonth() + 1).padStart(2, 0);
+		const displayDate = `${day}/${month}/${year}`;
+
 		const movHtml = `
 		<div>
 			<p class="${movType}">${i + 1} ${movType}</p>
-			<p class="flex-1">12/03/2020</p>
+			<p class="flex-1">${displayDate}</p>
 			<p class="cash">${mov.toFixed(2)}$</p>
 		</div>`;
 		movementContainer.insertAdjacentHTML("afterbegin", movHtml);
@@ -184,6 +196,9 @@ const resetTimer = () => {
 
 let currentAccount, appTimer;
 
+updateUI(account1);
+containerApp.classList.remove("hide");
+
 sortBtn.addEventListener("click", (e) => {
 	e.preventDefault();
 	updateMovements(currentAccount, true);
@@ -200,6 +215,16 @@ loginBtn.addEventListener("click", (e) => {
 		welcomeLabel.textContent = `Welcome, ${
 			currentAccount?.owner.split(" ")[0]
 		}!`;
+
+		const now = new Date();
+		const day = String(now.getDate()).padStart(2, 0);
+		const hour = now.getHours();
+		const year = now.getFullYear();
+		const min = String(now.getMinutes()).padStart(2, 0);
+		const month = String(now.getMonth() + 1).padStart(2, 0);
+		const displayDate = `${day}/${month}/${year}, ${min}:${hour}`;
+
+		dateLabel.textContent = displayDate;
 
 		resetTimer();
 	}
@@ -222,6 +247,9 @@ transferBtn.addEventListener("click", (e) => {
 	) {
 		recipent.movements.push(transferValue);
 		currentAccount.movements.push(-transferValue);
+
+		currentAccount.movementsDates.push(new Date().toISOString());
+		recipent.movementsDates.push(new Date().toISOString());
 
 		resetTimer();
 	}
