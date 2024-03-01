@@ -92,6 +92,31 @@ const userPin = document.getElementById("user_pin");
 
 // * EVENT FUNCTIONS -
 
+const curFormat = (value, locale, currency) =>
+	new Intl.NumberFormat(locale, {
+		style: "currency",
+		currency: currency,
+	}).format(value);
+
+const timeFormat = (locale, date) => {
+	const calcDayPassed = (date1, date2 = new Date()) =>
+		Math.round(Math.abs((date1 - date2) / (1000 * 60 * 60 * 24)));
+
+	const dayPassed = calcDayPassed(date);
+
+	if (dayPassed === 0) return "Today";
+	if (dayPassed === 1) return "Yesterday";
+	if (dayPassed >= 7) {
+		return new Intl.DateTimeFormat(locale, {
+			day: "numeric",
+			year: "numeric",
+			month: "numeric",
+		}).format(date);
+	} else {
+		return `${dayPassed} days ago`;
+	}
+};
+
 const userCreate = () => {
 	accounts.forEach((acc) => {
 		acc.username = acc.owner
@@ -103,17 +128,17 @@ const userCreate = () => {
 
 userCreate();
 
-
-
 const updateBalance = (acc) => {
 	accounts.forEach((account) => {
 		account.balance = account.movements.reduce((total, mov) => total + mov);
 	});
-	balanceAmount.textContent = acc.balance.toFixed(2) + " $";
+	const { balance, locale, currency } = acc;
+	balanceAmount.textContent = curFormat(balance, locale, currency);
 };
 
 const updateMovements = (acc, sort) => {
 	movementContainer.innerHTML = "";
+	const { locale, currency } = acc;
 
 	const movs = sort
 		? acc.movements.slice().sort((a, b) => a - b)
@@ -122,44 +147,38 @@ const updateMovements = (acc, sort) => {
 	movs.forEach((mov, i) => {
 		const movType = mov > 0 ? "deposit" : "withdrawal";
 
-		const now = new Date(acc.movementsDates[i]);
-		const day = String(now.getDate()).padStart(2, 0);
-		const hour = now.getHours();
-		const year = now.getFullYear();
-		const min = String(now.getMinutes()).padStart(2, 0);
-		const month = String(now.getMonth() + 1).padStart(2, 0);
-		const displayDate = `${day}/${month}/${year}`;
+		const date = new Date(acc.movementsDates[i]);
+		const displayDate = timeFormat(locale, date);
 
 		const movHtml = `
 		<div>
 			<p class="${movType}">${i + 1} ${movType}</p>
 			<p class="flex-1">${displayDate}</p>
-			<p class="cash">${mov.toFixed(2)}$</p>
+			<p class="cash">${curFormat(mov, locale, currency)}</p>
 		</div>`;
 		movementContainer.insertAdjacentHTML("afterbegin", movHtml);
 	});
 };
 
 const updateSummary = (acc) => {
+	const { locale, currency } = acc;
+
 	const totalCredit = acc.movements
 		.filter((mov) => mov > 0)
 		.reduce((total, mov) => total + mov);
+	creditAmount.textContent = curFormat(totalCredit, locale, currency);
 
-	creditAmount.textContent = totalCredit.toFixed(2) + "$";
-
-	const totalDebit = acc.movements
-		.filter((mov) => mov < 0)
-		.reduce((total, mov) => total + mov);
-
-	debitAmount.textContent = Math.abs(totalDebit).toFixed(2) + "$";
+	const totalDebit = Math.abs(
+		acc.movements.filter((mov) => mov < 0).reduce((total, mov) => total + mov)
+	);
+	debitAmount.textContent = curFormat(totalDebit, locale, currency);
 
 	const totalInterest = acc.movements
 		.filter((mov) => mov > 0)
 		.map((dep) => (dep * acc.interestRate) / 100)
 		.filter((int) => int >= 0)
 		.reduce((total, int) => total + int);
-
-	interestAmount.textContent = totalInterest.toFixed(2) + "$";
+	interestAmount.textContent = curFormat(totalInterest, locale, currency);
 };
 
 const updateUI = (acc) => {
@@ -196,9 +215,6 @@ const resetTimer = () => {
 
 let currentAccount, appTimer;
 
-updateUI(account1);
-containerApp.classList.remove("hide");
-
 sortBtn.addEventListener("click", (e) => {
 	e.preventDefault();
 	updateMovements(currentAccount, true);
@@ -217,12 +233,13 @@ loginBtn.addEventListener("click", (e) => {
 		}!`;
 
 		const now = new Date();
-		const day = String(now.getDate()).padStart(2, 0);
-		const hour = now.getHours();
-		const year = now.getFullYear();
-		const min = String(now.getMinutes()).padStart(2, 0);
-		const month = String(now.getMonth() + 1).padStart(2, 0);
-		const displayDate = `${day}/${month}/${year}, ${min}:${hour}`;
+		const displayDate = new Intl.DateTimeFormat(currentAccount.locale, {
+			hour: "numeric",
+			minute: "numeric",
+			day: "numeric",
+			year: "numeric",
+			month: "numeric",
+		}).format(now);
 
 		dateLabel.textContent = displayDate;
 
